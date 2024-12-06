@@ -285,6 +285,40 @@ app.get("/api/pdfs", authCheck, async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+app.get("/flag", authCheck, (req, res) => {
+  res.render("flag", { message: null });
+});
+
+app.post("/flag", authCheck, async (req, res) => {
+  const { flag } = req.body;
+
+  if (!flag) {
+    return res.status(400).json({ message: "Flag is required" });
+  }
+
+  try {
+    const userEmail = req.user.email;
+
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (flag === "NSTBank{SecureTr4ns4ct10ns_2024}") {
+      user.flag = true;
+      await user.save();
+      res.render("flag", {
+        message: "🎉 Congratulations! You've submitted the correct flag!",
+      });
+    } else {
+      res.render("flag", { message: "❌ Incorrect flag. Please try again." });
+    }
+  } catch (err) {
+    console.error("Error updating flag:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.listen(80, () => {
   console.log("Server running on http://localhost:3000");
 });

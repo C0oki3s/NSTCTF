@@ -6,6 +6,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "NST BANK",
     },
+    flag: {
+      type: String,
+    },
     email: {
       type: String,
       required: true,

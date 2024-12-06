@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Flag</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #d9534f;
+        }
+
+        .success {
+            color: #5cb85c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Submit the Flag</h1>
+        <% if (message) { %>
+            <p class="message <%= message.includes('Congratulations') ? 'success' : '' %>">
+                <%= message %>
+            </p>
+            <% } %>
+                <form action="/flag" method="POST">
+                    <label for="flag">Enter your flag:</label>
+                    <input type="text" id="flag" name="flag" required
+                        style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;">
+                    <button type="submit"
+                        style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+                </form>
+    </div>
+</body>
+
+</html>
