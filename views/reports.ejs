@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Sidebar Navigation Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: #f4f7fa;
+        }
+
+        .sidebar-navigation {
+            width: 80px;
+            background-color: #313443;
+            min-height: 100vh;
+        }
+
+        .sidebar-navigation ul {
+            text-align: center;
+            color: white;
+        }
+
+        .sidebar-navigation li {
+            padding: 28px 0;
+            cursor: pointer;
+            transition: all ease-out 120ms;
+            position: relative;
+        }
+
+        .sidebar-navigation li i {
+            display: block;
+            font-size: 24px;
+            transition: all ease 450ms;
+        }
+
+        .sidebar-navigation li .tooltip {
+            display: inline-block;
+            position: absolute;
+            background-color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 3px;
+            margin-top: -26px;
+            left: 90px;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-navigation li:hover {
+            background-color: #000000;
+        }
+
+        .sidebar-navigation li:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .sidebar-navigation li.active {
+            background-color: #22252E;
+        }
+
+        .sidebar-navigation li.active i {
+            color: #98D7EC;
+        }
+
+        /* Form Styles */
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="sidebar-navigation">
+        <ul>
+            <li class="active">
+                <a href="/dashboard">
+                    <i class="fa fa-file-text-o"></i>
+                    <span class="tooltip">dashboard</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/reports">
+                    <i class="fa fa-file-text-o"></i>
+                    <span class="tooltip">Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/read">
+                    <i class="fa fa-file-text-o"></i>
+                    <span class="tooltip">View Reports</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Generate End of Day Report</h1>
+        <form action="/reports" method="POST">
+            <div class="form-group">
+                <label for="manager_name">Manager Name:</label>
+                <input type="text" id="manager_name" name="manager_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="money">Money:</label>
+                <input type="number" id="money" name="money" required>
+            </div>
+
+            <div class="form-group">
+                <label for="branch">Branch Name:</label>
+                <input type="text" id="branch" name="branch" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Branch Address:</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Generate Report</button>
+        </form>
+    </div>
+</body>
+
+</html>

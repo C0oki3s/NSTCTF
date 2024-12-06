@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Reports</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Lato', sans-serif;
+            line-height: 1;
+        }
+
+
+
+        /* Sidebar Colors */
+        .sidebar-navigation {
+            display: inline-block;
+            min-height: 100vh;
+            width: 80px;
+            background-color: #313443;
+            float: left;
+        }
+
+        .sidebar-navigation ul {
+            text-align: center;
+            color: white;
+        }
+
+        .sidebar-navigation li {
+            padding: 28px 0;
+            cursor: pointer;
+            transition: all ease-out 120ms;
+            position: relative;
+        }
+
+        .sidebar-navigation li i {
+            display: block;
+            font-size: 24px;
+            transition: all ease 450ms;
+        }
+
+        .sidebar-navigation li .tooltip {
+            display: inline-block;
+            position: absolute;
+            background-color: #313443;
+            padding: 8px 15px;
+            border-radius: 3px;
+            margin-top: -26px;
+            left: 90px;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-navigation li .tooltip:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -4px;
+            top: 10px;
+            transform: rotate(45deg);
+            width: 10px;
+            height: 10px;
+            background-color: inherit;
+        }
+
+        .sidebar-navigation li:hover {
+            background-color: #22252E;
+        }
+
+        .sidebar-navigation li:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .sidebar-navigation li.active {
+            background-color: #22252E;
+        }
+
+        .sidebar-navigation li.active i {
+            color: #98D7EC;
+        }
+
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .reports-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .reports-list li {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .reports-list a {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .reports-list a:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .message p {
+            font-size: 18px;
+            color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generated Reports</h1>
+
+        <div class="message">
+            <p><strong>
+                    <%= message %>
+                </strong></p>
+        </div>
+
+        <h2>Download Your Report</h2>
+        <ul class="reports-list">
+
+            <li>
+                <a href="<%= pdfLink %>" class="btn">Download End of Day Report</a>
+            </li>
+
+        </ul>
+    </div>
+</body>
+
+</html>

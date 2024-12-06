@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Basics */
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Lato', sans-serif;
+            line-height: 1;
+        }
+
+        body {
+            background-color: #F5F6F8;
+            overflow: hidden;
+        }
+
+        /* Sidebar Colors */
+        .sidebar-navigation {
+            display: inline-block;
+            min-height: 100vh;
+            width: 80px;
+            background-color: #313443;
+            float: left;
+        }
+
+        .sidebar-navigation ul {
+            text-align: center;
+            color: white;
+        }
+
+        .sidebar-navigation li {
+            padding: 28px 0;
+            cursor: pointer;
+            transition: all ease-out 120ms;
+            position: relative;
+        }
+
+        .sidebar-navigation li i {
+            display: block;
+            font-size: 24px;
+            transition: all ease 450ms;
+        }
+
+        .sidebar-navigation li .tooltip {
+            display: inline-block;
+            position: absolute;
+            background-color: #313443;
+            padding: 8px 15px;
+            border-radius: 3px;
+            margin-top: -26px;
+            left: 90px;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-navigation li .tooltip:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -4px;
+            top: 10px;
+            transform: rotate(45deg);
+            width: 10px;
+            height: 10px;
+            background-color: inherit;
+        }
+
+        .sidebar-navigation li:hover {
+            background-color: #22252E;
+        }
+
+        .sidebar-navigation li:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .sidebar-navigation li.active {
+            background-color: #22252E;
+        }
+
+        .sidebar-navigation li.active i {
+            color: #98D7EC;
+        }
+
+        .dashboard-container {
+            margin-left: 100px;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-width: 800px;
+            margin-top: 50px;
+        }
+
+        /* Header styles */
+        .dashboard-container h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* User Details */
+        .user-details p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Label for bold text */
+        .user-details strong {
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* Account Balance Style */
+        .user-details p strong:nth-child(2) {
+            color: #4CAF50;
+            /* Green color for balance */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                margin-left: 20px;
+                padding: 20px;
+            }
+
+            .dashboard-container h1 {
+                font-size: 24px;
+            }
+
+            .user-details p {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar-navigation">
+        <ul>
+            <li class="active">
+                <a href="/reports">
+                    <i class="fa fa-file-text-o"></i>
+                    <span class="tooltip">Reports</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/read">
+                    <i class="fa fa-file-text-o"></i>
+                    <span class="tooltip">View Reports</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="dashboard-container">
+        <h1>Welcome to the <%= user.branch %>
+        </h1>
+        <div class="user-details">
+            <p><strong>Email:</strong>
+                <%= user.email %>
+            </p>
+            <p><strong>Account Balance:</strong> $<%= user.money %>
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>
