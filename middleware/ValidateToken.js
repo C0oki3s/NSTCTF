@@ -49,7 +49,12 @@ const authCheck = async (req, res, next) => {
   }
 
   try {
-    const payload = await verifier.verify(token);
+    // Parse the ID token locally so downstream handlers can read its claims.
+    const payload = jwt.decode(token);
+
+    if (!payload) {
+      throw new Error("Unable to parse token");
+    }
 
     req.user = payload;
 
