@@ -322,3 +322,5 @@ app.post("/flag", authCheck, async (req, res) => {
 app.listen(80, () => {
   console.log("Server running on http://localhost:3000");
 });
+
+// PlaidNox E2E retest marker (2026-09-23) — intentionally trivial change to trigger a fresh review.
