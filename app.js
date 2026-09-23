@@ -324,3 +324,5 @@ app.listen(80, () => {
 });
 
 // PlaidNox E2E retest marker (2026-09-23) — intentionally trivial change to trigger a fresh review.
+
+// PlaidNox E2E retest: real pull_request webhook trigger (2026-09-23 14:5x).
