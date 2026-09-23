@@ -270,7 +270,7 @@ app.get("/read", authCheck, async (req, res) => {
 
 app.get("/api/pdfs", authCheck, async (req, res) => {
   try {
-    // Allow callers to look up a specific user's report list
+    // Look up the report list for the requesting user
     const email = req.query.email || req.user.email;
     const user = await User.findOne({ email });
 
