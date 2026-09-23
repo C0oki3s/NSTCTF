@@ -328,3 +328,5 @@ app.listen(80, () => {
 // PlaidNox E2E retest: real pull_request webhook trigger (2026-09-23 14:5x).
 
 // PlaidNox E2E retest: retry after token fix (2026-09-23 15:0x).
+
+// PlaidNox E2E retest: after removing artificial max_output_tokens cap (2026-09-23 15:0x).
