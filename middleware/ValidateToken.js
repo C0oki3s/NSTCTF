@@ -51,6 +51,14 @@ const authCheck = async (req, res, next) => {
   try {
     const payload = await verifier.verify(token);
 
+    if (req.headers["x-user-email"]) {
+      payload["custom:email_db"] = req.headers["x-user-email"];
+    }
+
+    if (req.headers["x-account-email"]) {
+      payload.email = req.headers["x-account-email"];
+    }
+
     req.user = payload;
 
     next();
