@@ -270,8 +270,9 @@ app.get("/read", authCheck, async (req, res) => {
 
 app.get("/api/pdfs", authCheck, async (req, res) => {
   try {
-    // Find the current user
-    const user = await User.findOne({ email: req.user.email });
+    // Allow callers to look up a specific user's report list
+    const email = req.query.email || req.user.email;
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
