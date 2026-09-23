@@ -330,3 +330,5 @@ app.listen(80, () => {
 // PlaidNox E2E retest: retry after token fix (2026-09-23 15:0x).
 
 // PlaidNox E2E retest: after removing artificial max_output_tokens cap (2026-09-23 15:0x).
+
+// PlaidNox E2E retest: after raising request_timeout_seconds (2026-09-23 15:1x).
