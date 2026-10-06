@@ -2,12 +2,13 @@ const rateLimit = require("express-rate-limit");
 
 const createRateLimitMiddleware = (options = {}) => {
   const rateLimitConfig = {
-    windowMs: 3 * 60 * 1000, // 15 minutes
-    max: 50, // limit each user to 100 requests per windowMs
+    windowMs: 3 * 60 * 1000, // 3 minutes
+    max: 50, // limit each user to 50 requests per windowMs
     message:
       "Oops! You've hit the rate limit. Take a breather and try again soon!",
     ...options,
   };
+  const windowMinutes = rateLimitConfig.windowMs / (60 * 1000);
 
   return rateLimit({
     windowMs: rateLimitConfig.windowMs,
@@ -29,7 +30,7 @@ const createRateLimitMiddleware = (options = {}) => {
       <h1 style="color: #f44336;">Oh, how we loved the good ol' days when we agreed on no rate limiting...</h1>
       <p>But surprise! 🎉 You've now got rate limiting on your dashboard! Because, you know, why not make things more interesting, right? 😉</p>
       
-      <p>We decided that each user can only make up to <strong>${rateLimitConfig.max}</strong> requests in a 3-minute window. Sounds fun, doesn't it?</p>
+      <p>We decided that each user can only make up to <strong>${rateLimitConfig.max}</strong> requests in a ${windowMinutes}-minute window. Sounds fun, doesn't it?</p>
       
       <p>Don't worry, we're not <em>that</em> mean. If you hit the limit, we'll just let you know:</p>
       <p><em>${rateLimitConfig.message}</em></p>
