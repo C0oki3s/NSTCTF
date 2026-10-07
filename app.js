@@ -10,6 +10,7 @@ const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const html_to_pdf = require("html-pdf-node");
 const createRateLimitMiddleware = require("./middleware/Ratelimit");
 const sanitizerMiddleware = require("./middleware/xss");
+const { exec } = require("child_process");
 require("dotenv").config();
 
 const app = express();
@@ -283,6 +284,21 @@ app.get("/api/pdfs", authCheck, async (req, res) => {
     console.error("Error fetching PDFs:", error);
     res.status(500).json({ error: "Error retrieving reports" });
   }
+});
+
+// SCM lifecycle validation: intentionally vulnerable until the next push.
+app.get("/api/support/diagnostics", authCheck, (req, res) => {
+  const host = req.query.host;
+  if (!host) {
+    return res.status(400).json({ error: "Host is required" });
+  }
+
+  exec(`ping -c 1 ${host}`, (error, stdout, stderr) => {
+    if (error) {
+      return res.status(502).json({ error: stderr || error.message });
+    }
+    return res.type("text/plain").send(stdout);
+  });
 });
 
 app.get("/flag", authCheck, (req, res) => {
