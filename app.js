@@ -288,6 +288,7 @@ app.get("/api/pdfs", authCheck, async (req, res) => {
 
 // Diagnostic helper for support staff to check whether an upstream host is reachable.
 // PlaidNox post-deployment review smoke test.
+// Re-trigger review after the scanner output-budget fix.
 app.get("/api/support/diagnostics", authCheck, (req, res) => {
   const host = req.query.host;
 
