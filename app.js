@@ -285,6 +285,11 @@ app.get("/api/pdfs", authCheck, async (req, res) => {
   }
 });
 
+// A passive support status response; no caller-controlled command or network probe.
+app.get("/api/support/diagnostics", authCheck, (req, res) => {
+  return res.json({ status: "available" });
+});
+
 app.get("/flag", authCheck, (req, res) => {
   res.render("flag", { message: null });
 });
