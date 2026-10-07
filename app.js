@@ -10,7 +10,6 @@ const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const html_to_pdf = require("html-pdf-node");
 const createRateLimitMiddleware = require("./middleware/Ratelimit");
 const sanitizerMiddleware = require("./middleware/xss");
-const { exec } = require("child_process");
 require("dotenv").config();
 
 const app = express();
@@ -286,19 +285,9 @@ app.get("/api/pdfs", authCheck, async (req, res) => {
   }
 });
 
-// SCM lifecycle validation: intentionally vulnerable until the next push.
+// A passive support status response; no caller-controlled command or network probe.
 app.get("/api/support/diagnostics", authCheck, (req, res) => {
-  const host = req.query.host;
-  if (!host) {
-    return res.status(400).json({ error: "Host is required" });
-  }
-
-  exec(`ping -c 1 ${host}`, (error, stdout, stderr) => {
-    if (error) {
-      return res.status(502).json({ error: stderr || error.message });
-    }
-    return res.type("text/plain").send(stdout);
-  });
+  return res.json({ status: "available" });
 });
 
 app.get("/flag", authCheck, (req, res) => {
